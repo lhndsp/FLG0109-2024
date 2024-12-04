@@ -1,0 +1,225 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  8pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[a4paper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage[backend=biber,style=numeric,autocite=footnote,refsection=none]{biblatex}
+\usepackage{multicol} % Para texto em duas colunas
+\usepackage{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\addbibresource{referencias.bib} % Carregar o arquivo de bibliografia
+\setlength{\columnsep}{1cm} % Espaçamento entre colunas
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}} % Ajusta o estilo da citação
+\renewcommand{\footnotesize}{\scriptsize} % Ajusta o tamanho da fonte das referências no rodapé
+\usepackage{hyperref} % Links interativos para as referências
+\usepackage{cleveref}
+\graphicspath{ {mapas/} }
+\usepackage{booktabs} % Para linhas mais bonitas
+\AtEndDocument{\let\bibsection\relax}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Utilização de áreas de influência e Buffers na avaliação de acessibilidade hospitalar em São Paulo - SP},
+  pdfauthor={Ana Carolina da Silva, 10704320; Laura Gonçalves Ferreira, 13721882; Lucas Hernandes da Costa Porto, 11918140; Lucas Lima Gomes da Silva, 11768713},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Utilização de áreas de influência e Buffers na avaliação de
+acessibilidade hospitalar em São Paulo - SP}
+\author{Ana Carolina da Silva, 10704320 \and Laura Gonçalves Ferreira,
+13721882 \and Lucas Hernandes da Costa Porto, 11918140 \and Lucas Lima
+Gomes da Silva, 11768713}
+\date{Dezembro de 2024}
+
+\begin{document}
+\maketitle
+
+\section{Resumo}\label{resumo}
+
+Este estudo tem como objetivo principal avaliar a acessibilidade
+hospitalar publica no município de São Paulo - SP por meio da combinação
+de Áreas de Influência (polígonos de Voronoi) e Buffers. Busca-se
+identificar desigualdades espaciais, destacando zonas com atendimento
+insuficiente, áreas de sobreposição e regiões com maior demanda
+potencial. Além disso, o trabalho pretende sugerir possíveis
+intervenções que possam melhorar a equidade no acesso aos serviços
+hospitalares.
+
+\vspace{1cm}
+
+\begin{multicols}{2}
+
+\section{Introdução}
+
+
+A acessibilidade a serviços de saúde, especialmente hospitais, é um tema central no planejamento urbano e na promoção da equidade social. 
+Em ambientes urbanos, a localização estratégica de hospitais pode determinar a eficácia do atendimento, impactando diretamente a qualidade de vida da população. No entanto, em muitas cidades, a distribuição desses serviços é desigual, com áreas centrais geralmente melhor atendidas do que periferias ou zonas de urbanização recente.
+
+No município de São Paulo, existem 28.444 leitos hospitalares\footfullcite{basedosdados2022_datasus}, dos quais 10.379 integram a rede pública - que serão abordados nesse estudo. Esses leitos estão distribuídos entre 53 hospitais públicos. Com base na população estimada pelo Censo de 2022 \footfullcite{ibge2022censo}, a taxa média no município é de 2,48 leitos totais e 0,92 leitos públicos por mil habitantes. No entanto, essa distribuição é marcadamente desigual: a região central apresenta a maior disponibilidade, com 14,8 leitos totais e 1,04 leitos públicos por mil habitantes, enquanto a Zona Leste registra os menores índices, com apenas 1,5 e 0,6 leitos, respectivamente. Além de estar abaixo da recomendação da OMS, que sugere 3 leitos totais por mil habitantes \footfullcite{cns2022cenarios}, essa média municipal revela significativas disparidades na distribuição territorial dos recursos hospitalares.
+
+Para avaliar essas discrepâncias, técnicas de análise espacial como Áreas de Influência (polígonos de Voronoi), interseções e Buffers surgem como ferramentas importantes, permitindo mapear e compreender os padrões de acessibilidade no território.
+O presente estudo tem como foco combinar essas três metodologias para investigar a acessibilidade hospitalar em São Paulo - SP. A análise visa identificar áreas bem atendidas, zonas de sobreposição de serviços e, principalmente, lacunas onde o acesso à saúde pública é limitado. A partir dos resultados, espera-se oferecer subsídios para a formulação de políticas públicas que promovam uma distribuição mais equitativa dos serviços hospitalares.
+
+\section{Fundamentação Teórica}
+
+As Áreas de Influência, representadas pelos polígonos de Voronoi, são construções matemáticas que dividem o espaço em regiões baseadas na proximidade a pontos específicos. Cada polígono é delimitado por fronteiras equidistantes entre os pontos analisados, o que permite modelar a área de influência teórica de um serviço, como um hospital, sobre o espaço ao seu redor. Essa técnica é amplamente utilizada em estudos de localização, pois oferece uma visão clara da distribuição espacial de serviços e sua relação com os territórios adjacentes.
+
+Já os Buffers são zonas criadas ao redor de elementos geográficos com base em uma distância predefinida. No contexto da análise de acessibilidade, eles simulam áreas de alcance prático, considerando deslocamentos reais, como o raio percorrido a pé ou de carro. Enquanto os Voronoi fornecem uma perspectiva teórica de influência, os buffers introduzem uma abordagem prática, considerando a distância efetiva.
+
+Por meio da interseção entre camadas podemos definir recortes dos setores censitarios nas areas de influência e estimar sua população.
+
+Quando combinadas, essas ferramentas permitem analisar tanto a distribuição espacial quanto o alcance real dos serviços. Estudos prévios demonstram que essas técnicas são úteis para identificar áreas subatendidas ou sobrecarregadas, oferecendo uma base sólida para intervenções estratégicas no planejamento urbano e na alocação de recursos de saúde.
+
+
+\section{Metodologia}
+
+A metodologia é organizada em três etapas principais: coleta de dados, aplicação de técnicas de análise espacial e interpretação dos resultados.
+
+1. Coleta de Dados:
+Nesta etapa, realiza-se o levantamento das localizações geográficas (coordenadas) de todos os hospitais de um município, utilizando dados disponíveis em bases públicas e ferramentas de georreferenciamento. Simultaneamente, coleta-se a distribuição populacional das áreas urbanas a partir de dados censitários, permitindo a identificação de zonas com maior densidade demográfica.
+
+2. Ferramentas e Técnicas:
+O software QGIS será empregado para gerar polígonos de Voronoi e buffers, instrumentos essenciais para delimitar áreas de acessibilidade e influência. Os polígonos de Voronoi, derivados das coordenadas dos hospitais, definirão as respectivas áreas de influência teórica de cada unidade. Buffers serão criados com raios de 2km \footfullcite{verma_geographical_2020}, proporcionando uma análise detalhada da acessibilidade. Na sequência, realiza-se a interseção entre setores censitários, polígonos de Voronoi, buffers e divisões regionais do município, permitindo estimar a população atendida em cada delimitação.
+
+3. Procedimentos de Análise:
+
+\begin{itemize}
+    \item Sobrepõem-se os mapas de Voronoi e buffers aos dados censitários para estimar a população coberta por cada hospital;
+    \item Redistribuem-se os dados censitários proporcionalmente às áreas de influência, conforme descrito por Walker (2023) \footfullcite{walker2023census}, possibilitando a análise da disponibilidade de leitos em relação à população atendida;
+    \item Identificam-se áreas de lacuna na disponibilidade de serviços de saúde, correspondentes a regiões fora das delimitações de acessibilidade prática. A acessibilidade prática é então comparada com a teórica, destacando disparidades na cobertura dos serviços hospitalares.
+\end{itemize}
+
+\section{Resultados}
+
+1. Acessibilidade Teórica (Voronoi): Os polígonos de Voronoi abrangem toda a área urbana, mas exibem uma variação considerável em suas dimensões \cref{fig:acessibilidade_teorica}. Hospitais localizados em regiões centrais geram polígonos menores, reflexo da maior densidade de unidades hospitalares na área. Por outro lado, hospitais situados em zonas periféricas geram áreas de influência mais amplas, o que indica uma menor densidade de serviços nesses locais \cref{fig:acessibilidade_teorica_leitos}. Além disso, observa-se uma tendência contínua no número de leitos idependente do aumento da populaçao da área \cref{fig:corr_teorica}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mapas/acessibilidade_teorica.png}
+    \caption{Mapa de acessibilidade teórica aos serviços hospitalares.}
+    \label{fig:acessibilidade_teorica}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mapas/acessibilidade_teorica_leitos.png}
+    \caption{Distribuição de leitos na area de influência teoricas.}
+    \label{fig:acessibilidade_teorica_leitos}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mapas/corr_teorica.png}
+    \caption{Correlação entre o numero de leitos e a quantidade pessoas.}
+    \label{fig:corr_teorica}
+\end{figure}
+
+2. Acessibilidade Real (Buffers): Os buffers indicaram que aproximadamente 64\% da população está situada dentro do raio de 2 km \cref{fig:acessibilidade_real}. Além disso, não foi observada uma correlação visual clara entre a disponibilidade de leitos e a densidade populacional \cref{fig:corr_real}, sugerindo que a distribuição dos leitos não acompanha a concentração demográfica. Também pode-se notar que mesmo emtermos de serviços publicos regiões de baixa renda (Até 2 Salários minimos) \footnote{Dados do censo 2010, corrigidos pelo IPCA para 2022, com inflação acumulada de 114,55\%} não possuem cobertura hospitar abrangente \cref{fig:acessibilidade_real_renda}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mapas/acessibilidade_real.png}
+    \caption{Mapa de acessibilidade real aos serviços hospitalares.}
+    \label{fig:acessibilidade_real}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mapas/corr_real.png}
+    \caption{Correlação entre o numero de leitos e a quantidade pessoas nos buffers.}
+    \label{fig:corr_real}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mapas/acessibilidade_real_renda.png}
+    \caption{Renda média domiciliar e cobertura hospitalar}
+    \label{fig:acessibilidade_real_renda}
+\end{figure}
+
+3. Zonas de Sobreposição: Áreas centrais apresentam considerável sobreposição de buffers, indicando uma concentração de serviços em detrimento de regiões periféricas. Essa redundância pode levar à superlotação de hospitais em determinadas áreas, enquanto outras permanecem com acesso limitado \ref{fig:acessibilidade_real_leitos}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mapas/acessibilidade_real_leitos.png}
+    \caption{Distribuição de leitos na area de influência reais}
+    \label{fig:acessibilidade_real_leitos}
+\end{figure}
+
+
+4. Áreas fora da cobertura de 2 km concentram-se predominantemente em regiões periféricas densamente povoadas, como grande parte da Zona Leste. Esses locais estão situados além do alcance de cobertura real dos serviços de saúde, refletindo a insuficiência de infraestrutura hospitalar acessível em áreas de maior vulnerabilidade social \cref{fig:acessibilidade_real_zl}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mapas/acessibilidade_real_zl.png}
+    \caption{Mapa de acessibilidade teórica aos serviços hospitalares.}
+    \label{fig:acessibilidade_real_zl}
+\end{figure}
+
+
+\section{Conclusão}
+
+A combinação de Áreas de Influência e Buffers prova ser uma abordagem eficaz para analisar a acessibilidade hospitalar. Enquanto os polígonos de Voronoi fornecem uma visão ampla e teórica da cobertura espacial, os buffers introduzem um aspecto prático, destacando as limitações impostas por distâncias reais. Os resultados apontam para a necessidade de redistribuição estratégica dos serviços hospitalares, especialmente em regiões periféricas, onde as lacunas de acessibilidade são mais evidentes.
+Com base nos achados, recomenda-se a instalação de novos hospitais em áreas atualmente subatendidas, bem como a melhoria no transporte público para facilitar o deslocamento da população. O uso combinado dessas ferramentas oferece uma base sólida para embasar políticas públicas e promover maior equidade no acesso aos serviços de saúde.
+
+\end{multicols}
+
+
+\end{document}
