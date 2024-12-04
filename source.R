@@ -17,8 +17,6 @@ library(latex2exp)
 
 sf_use_s2(FALSE)
 
-orion::orion.config("credentials.env")
-
 fontnm <- 'Helvética'
 map.p.shape = 18
 

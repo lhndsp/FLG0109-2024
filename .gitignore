@@ -1,0 +1,16 @@
+dados/
+plots/
+*aux
+*bbl
+*bcf
+bib
+*blg
+*gz
+*log
+*nav
+*pdf
+*snm
+tex
+*toc
+*xml
+*out

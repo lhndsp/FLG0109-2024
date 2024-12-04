@@ -1,0 +1,147 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Fichamento do Texto: Considerações teórico-metodológicas sobre as origens e a inserção do sistema de informação geográfica na geografia},
+  pdfauthor={Lucas Hernandes da Costa Porto, NUSP: 11918140},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Fichamento do Texto: Considerações teórico-metodológicas sobre as
+origens e a inserção do sistema de informação geográfica na geografia}
+\author{Lucas Hernandes da Costa Porto, NUSP: 11918140}
+\date{}
+
+\begin{document}
+\maketitle
+
+O texto aborda a evolução dos Sistemas de Informação Geográfica (SIG),
+destacando seu crescimento tanto no Brasil quanto em outras partes do
+mundo, como parte da transição para uma sociedade informacional. Esse
+crescimento é impulsionado por fatores como a expansão dos investimentos
+em informática, o desenvolvimento de microprocessadores mais rápidos, e
+a redução dos preços de microcomputadores e periféricos, levando ao
+aumento da comunidade de usuários de informações espaciais. Esse cenário
+impulsionou a discussão sobre conceitos e paradigmas da análise
+espacial, essenciais para a existência dos SIGs.
+
+Os SIGs têm se adaptado a diversas aplicações na geografia, como o
+mapeamento geotécnico e a análise de bacias hidrográficas, em grande
+parte graças à integração com sistemas CAD e tecnologias de
+sensoriamento remoto. Entretanto, o texto ressalta uma distinção
+importante entre a simples acumulação de dados e a sabedoria geográfica,
+que envolve conhecimento e contexto, essenciais para o uso eficaz dos
+SIGs. O autor também destaca a importância de buscar as origens e os
+fundamentos do pensamento espacial na geografia para orientar as
+pesquisas contemporâneas que utilizam essas ferramentas geotecnológicas.
+
+A análise espacial, como explorada no texto, não surgiu com o advento
+dos computadores, mas sim da tradição geométrica e espacial da geografia
+anglo-saxônica dos meados do século XX. Aqui, são diferenciadas as
+escolas corológica e espacial como abordagens antagônicas, mas
+complementares, dentro da geografia. A escola corológica se concentra na
+descrição de regiões específicas e suas características, enquanto a
+escola espacial enfatiza o arranjo geométrico dos fenômenos e a análise
+de padrões espaciais. A importância da perspectiva espacial é sublinhada
+pela citação de Coffey (1981), que destaca como a localização absoluta
+ou relativa pode influenciar a intensidade das propriedades não
+espaciais.
+
+Além disso, o texto explora como a análise espacial contemporânea se
+tornou sinônimo de um conjunto de técnicas de manipulação de dados
+espaciais, fortemente influenciado pela estatística. A escola espacial,
+ao focar na distribuição relativa de objetos no espaço e nos padrões
+geométricos, contrasta com a escola corológica. Sack (1974) é citado
+para reforçar que o estudo da distribuição espacial dos fenômenos é
+central para a escola espacial, destacando o papel crucial do mapa na
+geografia e nos SIGs.
+
+A dualidade entre múltiplas características em um mesmo local e a
+distribuição dessas características em vários locais dentro da matriz
+geográfica de Berry também é abordada. Berry (1964) sugere que a
+complexidade do espaço geográfico é compreendida através da expansão das
+dimensões das séries de características e locais, formando uma matriz
+geográfica que pode ser representada por mapas temáticos. Ele propôs que
+a superposição de mapas temáticos em camadas poderia representar a
+totalidade do espaço geográfico, um conceito fundamental para o
+desenvolvimento dos SIGs.
+
+O texto ainda discute os modelos e paradigmas da informação geográfica,
+como o modelo de objetos exatos e o modelo de campos contínuos, ambos
+essenciais para a representação espacial em SIG. A evolução da geografia
+espacial e da análise quantitativa para integrar as metodologias dos
+SIGs é destacada, com Berry sendo citado como um dos pioneiros na
+proposição de técnicas que contribuíram para o desenvolvimento das
+funções de análise espacial nos SIGs. Em última análise, conclui-se que
+o SIG não é um paradigma da informática, mas uma consequência natural da
+evolução das teorias da análise espacial, que hoje são implementadas
+através da codificação vetor-raster e da representação orientada a
+objetos, permitindo a modelagem e a análise eficiente do espaço
+geográfico.
+
+\textbf{Referência:} Ferreira, M. C. (2006). Considerações
+teórico-metodológicas sobre as origens e a inserção do sistema de
+informação geográfica na geografia. VITTE, Antonio Carlos. Contribuições
+à história e à epistemologia da geografia. Rio de Janeiro: Bertrand
+Brasil, 101-125.
+
+\end{document}
