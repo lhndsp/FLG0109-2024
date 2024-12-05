@@ -9,7 +9,7 @@
 \setbeamertemplate{footline}[frame number] % Mostra o número do slide no rodapé
 
 % Informações do documento
-\title{Utilização de áreas de influência e Buffers na avaliação de acessibilidade hospitalar em São Paulo - SP}
+\title{Utilização de áreas de influência e Buffers na avaliação de acessibilidade hospitalar pública em São Paulo - SP}
 \author{Ana Carolina da Silva, Laura Gonçalves Ferreira,  Lucas Hernandes da Costa Porto, Lucas Lima Gomes da Silva}
 \institute{Universidade de São Paulo}
 \date{5 de Dezembro de 2024} % Ou uma data personalizada
@@ -24,12 +24,21 @@
 
 \section{Introdução}
 \begin{frame}{Introdução}
+            \begin{itemize}
+                \item A acessibilidade a serviços de saúde, especialmente hospitais, é um tema central no planejamento urbano e na promoção da equidade social.
+                \item Em muitas cidades, a distribuição desses serviços é desigual, com áreas centrais geralmente melhor atendidas do que periferias ou zonas de urbanização recente.
+                \item Este estudo tem como enfoque acesso a rede pública de saúde
+            \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Situação do município em 2022}
     \begin{columns}
         % Coluna 1: Texto
         \begin{column}{0.6\textwidth}
             \begin{itemize}
-                \item Hospitais: 241 hospitais dos quais \textbf{53 hospitais pertencem a rede pública}.
-                \item \textbf{\textcolor{red}{2,48}} leitos totais por mil habitantes. \textbf{\textcolor{red}{0,92}} leitos públicos por mil habitantes. A OMS recomenda \textbf{\textcolor{blue}{3 leitos totais}} por mil habitantes.
+                \item 241 hospitais dos quais \textbf{53 pertencem a rede pública}.
+                \item A OMS recomenda \textbf{\textcolor{blue}{3 leitos totais}} por mil habitantes. No município há \textbf{\textcolor{red}{2,48}} leitos totais por mil habitantes. \textbf{\textcolor{red}{0,92}} leitos públicos por mil habitantes. 
                 \item Região central: 14,8 leitos totais/mil. 1,04 leitos públicos/mil.
                 \item Zona Leste: 1,5 leitos totais/mil. 0,6 leitos públicos/mil.
             \end{itemize}
@@ -47,20 +56,22 @@
 \section{Áreas de Influência}
 
 \begin{frame}{Áreas de Influência}
-    \begin{block}{Poligonos de Voronói}
-      \begin{itemize}
-        \item Dividem o espaço com base na proximidade a pontos específicos.
-        \item Representam a área de influência teórica de serviços como hospitais.
-        \item Úteis para entender a distribuição espacial de serviços.
-      \end{itemize}
-    \end{block}
+          \begin{block}{Poligonos de Voronói}
+            \begin{itemize}
+              \item Dividem o espaço com base na proximidade a pontos específicos.
+              \item Representam a área de influência teórica de serviços como hospitais.
+              \item Úteis para entender a distribuição espacial de serviços.
+            \end{itemize}
+          \end{block}
+ 
+          \begin{block}{Buffers}
+            \begin{itemize}
+              \item Zonas de 2Km ao redor dos hospitais.
+              \item Simulam áreas de alcance prático, considerando deslocamentos reais.
+              \item Complementam os Voronoi com uma abordagem mais prática.
+            \end{itemize}   
+          \end{block}
 
-    \begin{block}{Buffers}
-      \begin{itemize}
-        \item Zonas de 2Km ao redor dos hospitais.
-        \item Simulam áreas de alcance prático, considerando deslocamentos reais.
-        \item Complementam os Voronoi com uma abordagem mais prática.
-      \end{itemize}    \end{block}
 \end{frame}
 
 \begin{frame}{Áreas de Influência}
@@ -121,7 +132,8 @@
     \begin{block}{Acessibilidade real}
       \begin{itemize}
         \item Os buffers indicaram que aproximadamente 64\% da população está situada dentro do raio de 2 km
-        \item Regiões de até 2 salários minimos não possuem cobertura hospitar abrangente
+        \item Regiões de até 2 salários tem acessibilidade real restrita a hospitais, onde o sistema de saúde pode estar subdimensionado.
+        \item Apesar das disparidades entre a acessibilidade teórica e real, ambas refletem a mesma tendência de centralização dos serviços de saúde, o que é inadequado para um município densamente populoso e com infraestrutura de transporte público insuficiente.
       \end{itemize}   
     \end{block}
 \end{frame}

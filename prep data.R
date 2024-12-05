@@ -1,4 +1,4 @@
-source('R/source.R')
+source('source.R')
 library(arrow)
 
 # load files -----
@@ -221,9 +221,9 @@ ploc <-
 
 ggplot() +
   geom_sf(data = st_crop(censo, zoom_zl), aes(fill = v0001), linewidth = 0) +
-  geom_sf(data = st_boundary(st_crop(buff.2k, zoom_zl)), linewidth = 1, linetype = 'dashed', aes(color = 'Buffer 2Km')) +
-  geom_sf(data = st_crop(hospitais, zoom_zl), aes(color = 'Hospitais'), size = 2, shape = 20) +
-  scale_color_manual(values = c('#176275', '#31243e')) +
+  geom_sf(data = st_boundary(st_crop(buff.2k, zoom_zl)), linewidth = 2, linetype = 'dashed', aes(color = 'Buffer 2Km')) +
+  geom_sf(data = st_crop(hospitais, zoom_zl), aes(color = 'Hospitais'), size = 4, shape = 20) +
+  scale_color_manual(values = c('black', '#176275')) +
   scale_fill_paletteer_c('harrypotter::gryffindor', direction = -1) +
   labs(fill = 'População\nCenso 2022',
        color = '', 
@@ -231,9 +231,9 @@ ggplot() +
        subtitle = 'Area de abrandência de 2Km em torno de cada hospital',
        caption = 'IBGE Censo 2022\nDataSUS') + 
   annotation_scale() +
-  annotation_north_arrow(pad_x = unit(10, "cm")) +
+  annotation_north_arrow(pad_x = unit(8, "cm")) +
   tema.mapa + 
-  inset_element(ploc, left = .8, right = 1, bottom = 0, top = 0.3)
+  inset_element(ploc, left = 1, right = 1.3, bottom = 0, top = .2)
 
 ggsave('plots/acessibilidade_real_zl.png', width = 6, height = 6)
 
