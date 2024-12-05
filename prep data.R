@@ -138,16 +138,19 @@ ggsave('plots/acessibilidade_teorica_leitos.png', width = 6, height = 6)
 
 
 # correlacao leitos x pop (teorica) -----
-ggplot(voronoi.censo, 
+pcorr.t <-
+  ggplot(voronoi.censo, 
        aes(x = `População 2022`/1000, y = eq_leitos)) +
-  geom_point() +
+  geom_point(size = .5) +
   geom_smooth(method = "gam",
               se = FALSE,
-              color = cores$chart.1) +
-  labs(title = '', 
+              color = cores$chart.1,
+              linewidth = .5) +
+  labs(title = 'Acessibilidade teorica', 
        x = TeX('\\frac{População 2022}{1000}'),
        y = 'Qtde. de leitos') +
   tema.grafico
+pcorr.t
 ggsave('plots/corr_teorica.png', width = 4, height = 4)
 
 
@@ -197,16 +200,19 @@ ggsave('plots/acessibilidade_real_leitos.png', width = 6, height = 6)
 
 
 # correlacao leitos x pop (real) -----
-ggplot(buff.2k.censo, 
+pcorr.c <-
+  ggplot(buff.2k.censo, 
        aes(x = `População 2022`/1000, y = eq_leitos)) +
-  geom_point() +
+  geom_point(size = .5) +
   geom_smooth(method = "gam",
               se = FALSE,
-              color = cores$chart.1) +
-  labs(title = '', 
+              color = cores$chart.1,
+              linewidth = .5) +
+  labs(title = 'Acessibilidade real', 
        x = TeX('\\frac{População 2022}{1000}'),
        y = 'Qtde. de leitos') +
   tema.grafico
+pcorr.c
 ggsave('plots/corr_real.png', width = 4, height = 4)
 
 
@@ -371,4 +377,19 @@ p.corr <-
 
 p.leitos + inset_element(p.corr, left = .8, right = 1.4, bottom = .8, top = 1)
 ggsave('plots/acessibilidade_real_leitos_mpcorr.png', width = 6, height = 8)
+
+
+t.adj <-
+  theme(plot.background = element_rect(fill = 'transparent'),
+        panel.background  = element_rect(fill = 'transparent'),
+        plot.title = element_text(size =  6),
+        axis.text = element_text(size =  6),
+        axis.title = element_text(size =  4))
+
+wrap_plots(pcorr.t + t.adj, pcorr.c + t.adj, nrow = 2)
+  
+ggsave('plots/corr_both.png', width = 4, height = 2.7)
+
+
+(buff.2k.censo$`População 2022` |> sum() ) / sum(zonas$pop_22)
 
